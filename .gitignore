@@ -3,6 +3,10 @@
 vendor
 Gemfile.lock
 
+# Python validation cache
+__pycache__/
+*.pyc
+
 # Jekyll cache
 .jekyll-cache
 .jekyll-metadata
