@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{% include lang.html %}
+{% if paginator.page == 1 or paginator.page == nil %}
+<section class="home-intro" aria-labelledby="intro-title">
+  <p class="intro-eyebrow">QIAN JINHANG / ENGINEERING NOTES</p>
+  <h1 id="intro-title">你好，我是钱金航<span class="intro-dot">。</span></h1>
+  <p class="intro-lead">记录 AI Agent、软件工程与技术实践</p>
+  <p class="intro-description">南京大学软件工程硕士在读。<br>关注 Agent Runtime、GraphRAG 与上下文治理，<br class="desktop-break">也记录把模型能力落到真实软件中的工程思考。</p>
+  <div class="intro-links">
+    <a href="{{ '/about/' | relative_url }}">关于我 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    <a href="{{ '/qian-jinhang-resume.pdf' | relative_url }}">公开版简历 <span class="file-label">PDF</span></a>
+    <a href="https://github.com/jhyz">GitHub <i class="fab fa-github" aria-hidden="true"></i></a>
+  </div>
+</section>
+{% assign featured = site.posts | where: 'pin', true | first %}
+{% if featured %}
+<section class="home-section" aria-labelledby="featured-title">
+  <div class="section-heading"><h2 id="featured-title">精选内容</h2><span>工程实践</span></div>
+  <a class="featured-story" href="{{ featured.url | relative_url }}">
+    <div class="story-diagram" aria-hidden="true"><span class="diagram-caption">THEMEAGENT</span><div class="diagram-step"><i class="fas fa-magnifying-glass"></i><span>证据检索</span></div><span class="diagram-line"></span><div class="diagram-step"><i class="fas fa-code-compare"></i><span>修复预览</span></div><span class="diagram-line"></span><div class="diagram-step"><i class="fas fa-check"></i><span>审批与校验</span></div></div>
+    <div class="story-copy"><p class="story-kicker">华为实习 · AI Agent</p><h3>ThemeAgent：<br>从工具调用到安全写回</h3><p>一次修复建议如何走到 IDE 中？从运行时、证据检索到人工审批，记录我在 ThemeAgent 中的工程实践。</p><span class="story-cta">阅读文章 <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div>
+  </a>
+</section>
+{% endif %}
+{% endif %}
+<section class="home-section recent-section" aria-labelledby="recent-title">
+  <div class="section-heading"><h2 id="recent-title">近期文章</h2><a href="{{ '/archives/' | relative_url }}">全部文章 <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+  <div id="post-list">
+  {% assign recent_posts = paginator.posts | default: site.posts %}
+  {% for post in recent_posts %}
+    <article class="recent-story">
+      <div class="recent-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m.%d' }}</time><span>{{ post.date | date: '%Y' }}</span></div>
+      <div class="recent-copy"><h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3><p>{{ post.description }}</p><div class="recent-tags">{% for tag in post.tags %}<a href="{{ tag | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag }}</a>{% endfor %}</div></div>
+    </article>
+  {% endfor %}
+  </div>
+  {% if paginator.total_pages > 1 %}{% include post-paginator.html %}{% endif %}
+</section>

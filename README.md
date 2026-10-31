@@ -1,44 +1,36 @@
-# 钱金航 · AI Agent Engineering Portfolio
+# 钱金航的博客
 
-[在线访问](https://jhyz.github.io/) · [公开版简历](https://jhyz.github.io/qian-jinhang-resume.pdf) · [联系邮箱](mailto:838175899@qq.com)
+<https://jhyz.github.io/> · 基于 [Chirpy Starter](https://github.com/cotes2020/chirpy-starter) 与 Jekyll，主题固定为 Chirpy 7.6.0。
 
-这是我的 2027 秋招个人主页，重点展示 AI Agent、大模型应用与工程化实践。页面内容以 ThemeAgent 的真实源码主链为核心，呈现 Agent Runtime、GraphRAG、证据治理、风险门禁和可恢复写回等工作。
+## 本地预览
 
-## 页面内容
+需要 Ruby 3.4 和 Bundler：
 
-- ThemeAgent 三维运行拓扑与五阶段架构工作台
-- 华为、帆软实习经历与工程职责
-- GPT Researcher 已合并开源贡献
-- 南京大学党的理论数据库项目
-- 可公开下载、已脱敏的单页简历
-- 桌面端快捷导航与移动端响应式布局
-
-## 技术栈
-
-- Next.js 16 / React 19 / TypeScript
-- React Three Fiber / Three.js
-- Framer Motion
-- GitHub Actions / GitHub Pages
-
-## 本地运行
-
-需要 Node.js 22.13 或更高版本。
-
-```bash
-npm ci
-npm run dev
+```sh
+bundle install
+bundle exec jekyll serve
 ```
 
-生产验证：
+生产构建与检查：
 
-```bash
-npm test
-npm run lint
-npm run export
+```sh
+JEKYLL_ENV=production bundle exec jekyll build
+bundle exec htmlproofer _site --disable-external
+python3 tests/check_site.py _site
 ```
 
-## 部署
+## 写文章
 
-推送到 `main` 后，[GitHub Actions](./.github/workflows/deploy-pages.yml) 会生成静态站点并部署到 GitHub Pages。
+在 `_posts` 中添加 `YYYY-MM-DD-slug.md`，填写 title、date、categories、tags 与 description。设置 `pin: true` 可选为首页精选。首页、归档、分类、标签、搜索与 RSS 均从文章生成。
 
-交互结构基于 [sanidhyy/next-portfolio](https://github.com/sanidhyy/next-portfolio) 改造。
+少量定制集中在 `_layouts/home.html`、`_includes/update-list.html` 和 `assets/css/jekyll-theme-chirpy.scss`；其余布局、搜索、主题切换继续使用官方主题。升级主题时应检查这些覆盖文件与中文语言文件。
+
+## 发布
+
+GitHub Actions 构建并检查每个迁移分支和 PR，只有 `main` 部署到 Pages。仓库 Pages 来源保持为 GitHub Actions。
+
+## 旧版恢复
+
+迁移前提交：`852ed439c53f50a0e3872f025107b89d40d89575`。旧站源码保留在 Git 历史中。若需恢复，应创建新的恢复提交并通过 Pages 构建发布，不需要改写历史。旧版内容需要重新进行公开范围审查。
+
+Chirpy 代码遵循仓库中的 MIT LICENSE；个人文章的许可在页面中显示。

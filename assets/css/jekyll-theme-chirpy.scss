@@ -1,0 +1,86 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+
+/* Small presentation layer over the upstream Chirpy theme. */
+:root { --journal-accent: #25618b; --journal-teal: #26717a; --journal-soft: #f1f5f8; }
+html[data-bs-theme='dark'] { --journal-accent: #8bbcdf; --journal-teal: #91c9ce; --journal-soft: #20282e; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Microsoft YaHei', sans-serif; }
+#sidebar .site-subtitle { font-style: normal !important; font-size: .95rem; }
+#sidebar .site-title { font-size: 1.7rem; letter-spacing: .03em; }
+#sidebar #avatar { width: 5.4rem; height: 5.4rem; box-shadow: none; }
+#sidebar .nav-link { min-height: 48px; }
+.home-intro { padding: 2rem 0 2.2rem; }
+.intro-eyebrow { color: var(--text-muted-color); font-size: .68rem; font-weight: 600; letter-spacing: .12em; margin-bottom: 1.1rem; }
+.home-intro h1 { font-size: clamp(1.85rem, 2.7vw, 2.7rem); font-weight: 750; line-height: 1.4; letter-spacing: -.02em; margin: 0 0 .8rem; }
+.intro-dot { color: var(--journal-teal); }
+.intro-lead { font-size: 1.13rem; font-weight: 550; color: var(--heading-color); margin-bottom: 1rem; }
+.intro-description { color: var(--text-muted-color); line-height: 1.9; font-size: .98rem; }
+.intro-links { display: flex; flex-wrap: wrap; gap: .3rem 1.3rem; margin-top: 1.25rem; }
+.intro-links a { display: inline-flex; gap: .5rem; align-items: center; min-height: 44px; font-size: .87rem; color: var(--journal-accent); }
+.file-label { font-size: .62rem; border: 1px solid var(--main-border-color); padding: 1px 4px; border-radius: 3px; color: var(--text-muted-color); }
+.home-section { margin-bottom: 2.3rem; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.section-heading h2 { margin: 0; font-size: 1.2rem; font-weight: 650; }
+.section-heading > span { font-size: .75rem; color: var(--text-muted-color); }
+.section-heading > a { font-size: .8rem; min-height: 44px; display: inline-flex; align-items: center; gap: .5rem; }
+a.featured-story { display: grid; grid-template-columns: minmax(130px, .7fr) 2fr; gap: 1.5rem; padding: 1.35rem; border: 1px solid var(--main-border-color) !important; border-radius: 10px; color: var(--text-color); transition: border-color .2s; }
+a.featured-story:hover { border-color: var(--journal-accent) !important; text-decoration: none; }
+.story-diagram { display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--journal-soft); border-radius: 6px; padding: 1.25rem .6rem; color: var(--journal-teal); }
+.diagram-caption { font-size: .55rem; letter-spacing: .14em; margin-bottom: 1.2rem; color: var(--text-muted-color); }
+.diagram-step { font-size: .76rem; display: flex; align-items: center; gap: .65rem; }
+.diagram-step i { width: 16px; text-align: center; }
+.diagram-line { height: 23px; width: 1px; background: var(--main-border-color); margin: .5rem 0; }
+.story-kicker { color: var(--journal-teal); font-size: .72rem; margin: .1rem 0 .65rem; }
+.story-copy h3 { font-size: 1.34rem; line-height: 1.55; margin: 0 0 .7rem; font-weight: 650; color: var(--heading-color); }
+.story-copy > p:not(.story-kicker) { color: var(--text-muted-color); font-size: .88rem; line-height: 1.8; margin-bottom: 1rem; }
+.story-cta { color: var(--journal-accent); font-size: .83rem; display: flex; gap: .65rem; align-items: center; }
+.recent-story { display: flex; gap: 1.4rem; padding: 1.5rem 0; border-top: 1px solid var(--main-border-color); }
+.recent-date { flex: 0 0 52px; display: flex; flex-direction: column; padding-top: .15rem; color: var(--text-muted-color); }
+.recent-date time { font-size: 1.1rem; font-variant-numeric: tabular-nums; color: var(--heading-color); }
+.recent-date span { font-size: .72rem; margin-top: .25rem; }
+.recent-copy h3 { font-size: 1.12rem; line-height: 1.65; margin: 0 0 .5rem; font-weight: 600; }
+.recent-copy h3 a { color: var(--heading-color); }
+.recent-copy p { font-size: .9rem; line-height: 1.8; color: var(--text-muted-color); margin-bottom: .7rem; }
+.recent-tags { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.recent-tags a { font-size: .72rem; color: var(--journal-teal); padding: .25rem 0; }
+#panel-wrapper .access { top: 2rem; }
+#panel-wrapper .panel-heading { font-size: 1rem; color: var(--heading-color); margin-bottom: .9rem; }
+.category-list li a { display: flex; justify-content: space-between; gap: .6rem; align-items: center; min-height: 48px; font-size: .83rem; border-bottom: 1px solid var(--main-border-color); }
+.category-list i { color: var(--journal-teal); margin-right: .4rem; }
+.category-count { color: var(--text-muted-color); font-size: .75rem; white-space: nowrap; }
+.category-count i { margin-left: .5rem; }
+.panel-posts li { padding: .4rem 0 .8rem; }
+.panel-posts a { font-size: .86rem; line-height: 1.8; display: block; }
+.panel-posts time { font-size: .7rem; display: block; margin-top: .3rem; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--journal-accent); outline-offset: 4px; }
+@media (max-width: 767px) {
+  .home-intro { padding-top: 1.15rem; padding-bottom: 1.8rem; }
+  .intro-eyebrow { font-size: .6rem; }
+  .intro-lead { font-size: 1rem; line-height: 1.7; }
+  .intro-description { font-size: .91rem; }
+  .desktop-break { display: none; }
+  a.featured-story { grid-template-columns: 1fr; padding: 1.15rem; gap: 1rem; }
+  .story-diagram { flex-direction: row; gap: .5rem; padding: 1rem .5rem; }
+  .diagram-caption { display: none; }
+  .diagram-step { font-size: .66rem; gap: .3rem; }
+  .diagram-line { width: 10px; height: 1px; margin: 0; }
+  .story-copy h3 { font-size: 1.3rem; }
+  .story-copy h3 br { display: none; }
+  .recent-story { gap: .9rem; }
+  .recent-copy h3 { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }

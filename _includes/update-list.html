@@ -1,0 +1,17 @@
+{% if site.categories.size > 0 %}
+<section class="category-panel">
+  <h2 class="panel-heading">文章分类</h2>
+  <ul class="list-unstyled category-list">
+  {% assign categories = site.categories | sort %}
+  {% for category in categories %}
+    <li><a href="{{ category[0] | slugify | url_encode | prepend: '/categories/' | append: '/' | relative_url }}"><span><i class="far fa-folder-open" aria-hidden="true"></i> {{ category[0] }}</span><span class="category-count">{{ category[1].size }} <i class="fas fa-angle-right" aria-hidden="true"></i></span></a></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endif %}
+<section class="recent-panel">
+  <h2 class="panel-heading">近期文章</h2>
+  <ul class="list-unstyled panel-posts">
+    {% for post in site.posts limit: 5 %}<li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time></li>{% endfor %}
+  </ul>
+</section>
