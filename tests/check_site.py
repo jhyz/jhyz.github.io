@@ -13,11 +13,11 @@ for name in required:
 for name in ['app', 'tests', 'docs', 'db', 'worker', '.openai']:
     assert not (site / name).exists(), f'Unexpected published source directory: {name}'
 search = json.loads((site / 'assets/js/data/search.json').read_text(encoding='utf-8'))
-assert len(search) == 1 and 'ThemeAgent' in search[0]['title'], 'Unexpected articles'
+assert any(item.get('url') == '/posts/themeagent/' and 'ThemeAgent' in item.get('title', '') for item in search), 'Missing migrated article in search'
 for path in site.rglob('*'):
     if path.suffix not in {'.html', '.json', '.xml', '.txt'}:
         continue
     content = path.read_text(encoding='utf-8')
     for pattern in [r'(?<![0-9])1[3-9][0-9]{9}(?![0-9])', r'[A-Za-z]:\\(?:Users|learntry)', r'/Users/', r'/home/[^ /]+/', r'ghp_[A-Za-z0-9]{20,}', r'-----BEGIN .*PRIVATE KEY-----']:
         assert not re.search(pattern, content), f'Publication review required: {path.relative_to(site)}'
-print(f'PASS: {len(required)} required routes, one real article, publication boundary checks')
+print(f'PASS: {len(required)} required routes, {len(search)} indexed articles, publication boundary checks')

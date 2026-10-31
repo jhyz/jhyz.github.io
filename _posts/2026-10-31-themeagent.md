@@ -5,6 +5,13 @@ categories: [AI Agent, 工程实践]
 tags: [ThemeAgent, Agent Runtime, GraphRAG]
 description: 从工具调用、证据检索到人工审批与安全写回，记录我在华为实习期间参与 ThemeAgent 核心开发的工程实践。
 pin: true
+feature_label: ThemeAgent
+feature_title: 从工具调用到安全写回
+feature_summary: 一次修复建议如何走到 IDE 中？从运行时、证据检索到人工审批，记录我在 ThemeAgent 中的工程实践。
+feature_steps:
+  - { icon: fa-magnifying-glass, text: 证据检索 }
+  - { icon: fa-code-compare, text: 修复预览 }
+  - { icon: fa-check, text: 审批与校验 }
 toc: true
 ---
 

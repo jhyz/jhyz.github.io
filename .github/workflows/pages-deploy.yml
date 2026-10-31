@@ -28,7 +28,9 @@ jobs:
       - name: Check internal links
         run: bundle exec htmlproofer _site --disable-external
       - name: Check publication boundaries
-        run: python3 tests/check_site.py _site
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 tests/check_site.py _site
       - name: Save preview artifact
         uses: actions/upload-artifact@v4
         with:
