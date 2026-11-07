@@ -177,7 +177,7 @@ Worker 各自保留执行上下文。Router 主要掌握任务关系、状态、
 
 此外，[Harness 配置](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/cordis.patch.yml) 启用了上下文压缩和工具结果裁剪。工具输出裁剪处理的是工具结果，不是把所有用户消息都按同一字符数截断。
 
-分页读取的文本快照缓存也值得区分：它用于保证后续页基于同一份读取结果，与模型服务的 KV Cache 不是一回事。
+分页读取的文本快照缓存也值得区分：[sourcePage](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/src/app/resources.ts#L103-L108) 在 `offset = 0` 时重新获取资源，并刷新同一 Session、同一资源对应的缓存；后续页通常复用当前快照。如果缓存已失效，需要从 `offset = 0` 重新读取。因此，它不是永不变化的分页快照，也与模型服务的 KV Cache 不是一回事。
 
 所以这里并不只有“长了就做摘要”这一种处理。任务归属已经确定的，尽量不重复决策；细节留在 Worker，需要时再读取；对于仍然增长的会话，再使用宿主的压缩与裁剪能力。
 
